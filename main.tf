@@ -24,6 +24,18 @@ resource "aws_instance" "factorio_server" {
   USER_DATA
 }
 
+data "aws_route53_zone" "primary" {
+  name = "shanesfactorioserver.com"
+}
+
+resource "aws_route53_record" "www" {
+  zone_id = "${data.aws_route53_zone.primary.zone_id}"
+  name    = "www.shanesfactorioserver.com"
+  type    = "A"
+  ttl     = "300"
+  records = ["${aws_instance.factorio_server.public_ip}"]
+}
+
 resource "aws_security_group" "factorio_security_group" {
   name        = "factorio_security_group"
   description = "Used to grant SSH and Factorio client to connect"
