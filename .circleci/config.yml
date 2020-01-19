@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  welcome: circleci/welcome-orb@0.4.1
 jobs:
   deploy_Server:
     docker:
@@ -10,6 +8,6 @@ jobs:
       - terraform init
       - terraform apply -input=false
 workflows:
-  welcome:
+  build_deploy:
     jobs:
-      - deploy_Server
+      - deploy_server
