@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  deploy_Server:
+  deploy_server:
     docker:
       - image: hashicorp/terraform
     steps:
