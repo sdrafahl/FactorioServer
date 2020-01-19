@@ -1,0 +1,15 @@
+version: 2.1
+orbs:
+  welcome: circleci/welcome-orb@0.4.1
+jobs:
+  deploy_Server:
+    docker:
+      - image: hashicorp/terraform
+    steps:
+      - checkout
+      - terraform init
+      - terraform apply -input=false
+workflows:
+  welcome:
+    jobs:
+      - deploy_Server
