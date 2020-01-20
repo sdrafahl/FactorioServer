@@ -25,7 +25,7 @@ resource "aws_instance" "factorio_server" {
   git clone https://github.com/sdrafahl/FactorioServer.git
   cd FactorioServer
   sudo service docker start
-  docker-compose up -d
+  sudo docker-compose up -d
   echo "Running Factorio Container"
   USER_DATA
 }
