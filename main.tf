@@ -6,6 +6,7 @@ provider "aws" {
 
 variable "AdminPassword" {
   type = string
+  default = "testPassword"
 }
 
 locals {
