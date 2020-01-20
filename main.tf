@@ -17,10 +17,16 @@ resource "aws_instance" "factorio_server" {
   #!/bin/bash
   sudo yum update -y
   sudo yum install docker -y
-  echo "Installing Docker"
-  echo "Running Factorio Container"
+  sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose > /dev/null
+  sudo chmod +x /usr/local/bin/docker-compose
+  ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  docker-compose --version
+  sudo yum install git -y
+  git clone https://github.com/sdrafahl/FactorioServer.git
+  cd FactorioServer
   sudo service docker start
-  sudo docker run --name factorio -d -p 34197:34197/udp goofball222/factorio
+  docker-compose up -d
+  echo "Running Factorio Container"
   USER_DATA
 }
 
