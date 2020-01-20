@@ -4,6 +4,10 @@ provider "aws" {
   max_retries = 3
 }
 
+variable "AdminPassword" {
+  type = string
+}
+
 locals {
   aws_ami_id = "ami-09d069a04349dc3cb"
 }
@@ -24,6 +28,9 @@ resource "aws_instance" "factorio_server" {
   sudo yum install git -y
   git clone https://github.com/sdrafahl/FactorioServer.git
   cd FactorioServer
+  cd factorio
+  echo ${var.AdminPassword} > RCON.pw
+  cd ..
   sudo service docker start
   sudo docker-compose up -d
   echo "Running Factorio Container"

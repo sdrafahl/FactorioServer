@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: terraform init
-      - run: terraform apply -input=false
+      - run: terraform apply -var="AdminPassword=${AdminPassword}" -input=false
 workflows:
   build_deploy:
     jobs:
