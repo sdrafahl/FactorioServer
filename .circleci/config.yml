@@ -5,8 +5,8 @@ jobs:
       - image: hashicorp/terraform
     steps:
       - checkout
-      - run: terraform init
-      - run: terraform apply -var="AdminPassword=${AdminPassword}" -input=false
+      - run: terraform init -input=false
+      - run: terraform apply -var="AdminPassword=$AdminPassword" -input=false -auto-approve
 workflows:
   build_deploy:
     jobs:
