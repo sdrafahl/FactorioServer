@@ -16,7 +16,7 @@ locals {
 resource "aws_instance" "factorio_server" {
   ami = local.aws_ami_id
   instance_type = "t3.medium"
-  key_name = "factorioServer"
+  key_name = "ShanesFactorioServer"
   security_groups = ["${aws_security_group.factorio_security_group.name}"]
   user_data = <<USER_DATA
   #!/bin/bash
